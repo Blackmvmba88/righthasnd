@@ -1,0 +1,46 @@
+{
+  "name": "pinterest.search",
+  "description": "Search Pinterest from a spoken or typed semantic command without screen coordinates.",
+  "aliases": [
+    "busca en pinterest",
+    "pinterest busca",
+    "search pinterest"
+  ],
+  "match": "^(?:(?:busca|buscar|search)(?: en)? pinterest(?: por)?|pinterest (?:busca|buscar|search))\\s+(?P<query>.+)$",
+  "steps": [
+    {
+      "action": "goto",
+      "args": {
+        "url": "https://www.pinterest.com/"
+      }
+    },
+    {
+      "action": "fill_semantic",
+      "args": {
+        "candidates": [
+          {"role": "searchbox", "name": "Search"},
+          {"role": "searchbox", "name": "Buscar"},
+          {"role": "textbox", "name": "Search"},
+          {"role": "textbox", "name": "Buscar"},
+          {"placeholder": "Search"},
+          {"placeholder": "Buscar"}
+        ],
+        "value": "{{query}}"
+      }
+    },
+    {
+      "action": "press_semantic",
+      "args": {
+        "candidates": [
+          {"role": "searchbox", "name": "Search"},
+          {"role": "searchbox", "name": "Buscar"},
+          {"role": "textbox", "name": "Search"},
+          {"role": "textbox", "name": "Buscar"},
+          {"placeholder": "Search"},
+          {"placeholder": "Buscar"}
+        ],
+        "key": "Enter"
+      }
+    }
+  ]
+}
